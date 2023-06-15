@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import gui.ayuda;
+import login.RolesUsuarios;
 import produccion.IngresarDato;
 import produccion.InsertarDato;
 import produccion.MainFrame;
@@ -33,7 +34,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	private JMenuItem btnListar;
 	private JMenu btnConfiguracion;
 	private JMenu btnAlmacen;
-	private JMenuItem btnConfiDescuento;
 	private JMenuItem btnConfiObsequio;
 	private JMenuItem btnVender;
 	private JMenuItem btnGenerarReportes;
@@ -47,6 +47,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	private JDesktopPane desktopPane;
 	private JMenuItem btnExit;
 	private JLabel lblNewLabel;
+	private JMenuItem btnRolesUsuario;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -150,12 +151,16 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		btnConfiguracion.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/img/confguracion.png")));
 		menuBar.add(btnConfiguracion);
 
-		btnConfiDescuento = new JMenuItem("Configurar Roles de usuario");
-		btnConfiDescuento.addActionListener(this);
-		btnConfiguracion.add(btnConfiDescuento);
-
 		btnConfiObsequio = new JMenuItem("Configurar accesos");
 		btnConfiObsequio.addActionListener(this);
+
+		btnRolesUsuario = new JMenuItem("Configurar Roles de usuario");
+		btnRolesUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnRolesUsuario(e);
+			}
+		});
+		btnConfiguracion.add(btnRolesUsuario);
 		btnConfiguracion.add(btnConfiObsequio);
 
 		btnAyuda = new JMenu("Ayuda");
@@ -199,11 +204,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnListarStock(ActionEvent e) {
-		if (formMainFrame == null || formMainFrame.isClosed()) {
-			formMainFrame = new MainFrame();
-			desktopPane.add(formMainFrame);
-			formMainFrame.show();
-		}
+		MainFrame enter = new MainFrame();
+		enter.setVisible(true);
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -213,5 +216,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		IngresarDato insertarDatoFrame = new IngresarDato();
 		insertarDatoFrame.setVisible(true);
 
+	}
+
+	protected void actionPerformedBtnRolesUsuario(ActionEvent e) {
+		RolesUsuarios roles = new RolesUsuarios();
+		roles.setVisible(true);
 	}
 }
