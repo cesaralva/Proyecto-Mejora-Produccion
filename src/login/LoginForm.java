@@ -33,13 +33,12 @@ public class LoginForm extends JFrame implements ActionListener {
     private JLabel etiquetaUsuario;
     private JPanel panel_1;
     private JLabel lblNewLabel_2;
-    private JLabel lblNewLabel;
 
     public LoginForm() {
     	setIconImage(Toolkit.getDefaultToolkit().getImage(LoginForm.class.getResource("/img/OIP.jpg")));
     	
         setTitle("Produccion");
-        setSize(680, 401);
+        setSize(425, 401);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -49,7 +48,7 @@ public class LoginForm extends JFrame implements ActionListener {
         panel.setLayout(null);
         
         panel_1 = new JPanel();
-        panel_1.setBounds(306, 0, 358, 362);
+        panel_1.setBounds(0, 0, 421, 371);
         panel_1.setForeground(new Color(255, 255, 255));
         panel_1.setBackground(new Color(255, 255, 255));
         panel.add(panel_1);
@@ -58,51 +57,47 @@ public class LoginForm extends JFrame implements ActionListener {
                 etiquetaUsuario = new JLabel("USUARIO:");
                 etiquetaUsuario.setBounds(10, 170, 110, 21);
                 panel_1.add(etiquetaUsuario);
-                etiquetaUsuario.setFont(new Font("TangoSans", Font.BOLD, 18));
+                etiquetaUsuario.setFont(new Font("Dialog", Font.BOLD, 16));
                 etiquetaUsuario.setForeground(new Color(0, 0, 0));
                 lblNewLabel_1 = new JLabel("PRODUCCION");
-                lblNewLabel_1.setBounds(70, 123, 276, 36);
+                lblNewLabel_1.setBackground(new Color(70, 130, 180));
+                lblNewLabel_1.setBounds(99, 122, 276, 36);
                 panel_1.add(lblNewLabel_1);
-                lblNewLabel_1.setForeground(Color.RED);
+                lblNewLabel_1.setForeground(new Color(70, 130, 180));
                 lblNewLabel_1.setFont(new Font("Roboto Bk", Font.BOLD, 30));
                 JLabel etiquetaPassword = new JLabel("CONTRASEÑA:");
                 etiquetaPassword.setBackground(new Color(0, 255, 0));
-                etiquetaPassword.setBounds(10, 211, 149, 30);
+                etiquetaPassword.setBounds(8, 212, 149, 30);
                 panel_1.add(etiquetaPassword);
-                etiquetaPassword.setFont(new Font("TangoSans", Font.BOLD, 18));
+                etiquetaPassword.setFont(new Font("Dialog", Font.BOLD, 16));
                 etiquetaPassword.setForeground(new Color(0, 0, 0));
                 botonLogin = new JButton("INICIAR SESION");
+                botonLogin.setIcon(new ImageIcon(LoginForm.class.getResource("/img/aceptar.png")));
                 botonLogin.setForeground(new Color(255, 255, 255));
-                botonLogin.setBackground(new Color(255, 69, 0));
-                botonLogin.setBounds(175, 252, 140, 29);
+                botonLogin.setBackground(new Color(70, 130, 180));
+                botonLogin.setBounds(157, 252, 158, 29);
                 panel_1.add(botonLogin);
                 botonLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
                 campoContraseña = new JPasswordField(10);
-                campoContraseña.setBounds(175, 219, 140, 20);
+                campoContraseña.setBounds(157, 219, 158, 20);
                 panel_1.add(campoContraseña);
                 campoUsuario = new JTextField(10);
-                campoUsuario.setBounds(175, 173, 140, 20);
+                campoUsuario.setBounds(157, 173, 158, 20);
                 panel_1.add(campoUsuario);
                 
                 btnNewButton = new JButton("SALIR");
-                btnNewButton.setBounds(175, 299, 140, 29);
+                btnNewButton.setIcon(new ImageIcon(LoginForm.class.getResource("/img/boton-x.png")));
+                btnNewButton.setBounds(157, 299, 158, 29);
                 panel_1.add(btnNewButton);
                 btnNewButton.setForeground(new Color(255, 255, 255));
-                btnNewButton.setBackground(new Color(255, 0, 0));
+                btnNewButton.setBackground(new Color(70, 130, 180));
                 btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
                 
                 lblNewLabel_2 = new JLabel("");
                 lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-                lblNewLabel_2.setIcon(new ImageIcon(LoginForm.class.getResource("/img/OIP.jpg")));
-                lblNewLabel_2.setBounds(117, 11, 174, 114);
+                lblNewLabel_2.setIcon(new ImageIcon(LoginForm.class.getResource("/img/logo_calplast.png")));
+                lblNewLabel_2.setBounds(0, 0, 409, 114);
                 panel_1.add(lblNewLabel_2);
-                
-                lblNewLabel = new JLabel("");
-                lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 6));
-                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                lblNewLabel.setIcon(new ImageIcon(LoginForm.class.getResource("/img/tuberia.jpg")));
-                lblNewLabel.setBounds(0, 0, 308, 362);
-                panel.add(lblNewLabel);
                 btnNewButton.addActionListener(new ActionListener() {
                 	public void actionPerformed(ActionEvent e) {
                 		System.exit(0);

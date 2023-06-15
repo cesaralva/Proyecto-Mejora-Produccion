@@ -1,6 +1,7 @@
 package menu;
 
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,20 +11,18 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 import gui.ayuda;
+import produccion.IngresarDato;
 import produccion.InsertarDato;
 import produccion.MainFrame;
 import produccion.ModificarDato;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 	private JMenuBar menuBar;
@@ -169,16 +168,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
 		desktopPane = new JDesktopPane();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(desktopPane,
+				GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(desktopPane,
+				GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE));
 		desktopPane.setLayout(new GridLayout(0, 1, 0, 0));
-		
+
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/img/My project-1 (2).png")));
@@ -215,7 +210,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnIngresarStock(ActionEvent e) {
-		InsertarDato insertarDatoFrame = new InsertarDato();
+		IngresarDato insertarDatoFrame = new IngresarDato();
 		insertarDatoFrame.setVisible(true);
 
 	}
