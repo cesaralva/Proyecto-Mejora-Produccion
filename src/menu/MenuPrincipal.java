@@ -36,8 +36,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	private JMenu btnAlmacen;
 	private JMenuItem btnConfiDescuento;
 	private JMenuItem btnConfiObsequio;
-	private JMenuItem btnConfiCantOptima;
-	private JMenuItem btnConfiCuotaDiaria;
 	private JMenuItem btnVender;
 	private JMenuItem btnGenerarReportes;
 	private JMenu btnAyuda;
@@ -153,21 +151,13 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		btnConfiguracion.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/img/confguracion.png")));
 		menuBar.add(btnConfiguracion);
 
-		btnConfiDescuento = new JMenuItem("Configurar descuentos");
+		btnConfiDescuento = new JMenuItem("Configurar Roles de usuario");
 		btnConfiDescuento.addActionListener(this);
 		btnConfiguracion.add(btnConfiDescuento);
 
-		btnConfiObsequio = new JMenuItem("Configurar obsequios");
+		btnConfiObsequio = new JMenuItem("Configurar accesos");
 		btnConfiObsequio.addActionListener(this);
 		btnConfiguracion.add(btnConfiObsequio);
-
-		btnConfiCantOptima = new JMenuItem("Configurar cantidad óptima");
-		btnConfiCantOptima.addActionListener(this);
-		btnConfiguracion.add(btnConfiCantOptima);
-
-		btnConfiCuotaDiaria = new JMenuItem("Configurar cuota diaria");
-		btnConfiCuotaDiaria.addActionListener(this);
-		btnConfiguracion.add(btnConfiCuotaDiaria);
 
 		btnAyuda = new JMenu("Ayuda");
 		btnAyuda.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/img/Help.png")));
@@ -222,16 +212,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		actionPerformedBtnAcercaTienda(e);
-	}
-
-	protected void actionPerformedBtnAcercaTienda(ActionEvent e) {
-		if (formAyuda == null || formAyuda.isClosed()) {
-			formAyuda = new ayuda();
-			desktopPane.add(formAyuda);
-			formAyuda.show();
-		}
-
 	}
 
 	protected void actionPerformedBtnIngresarStock(ActionEvent e) {

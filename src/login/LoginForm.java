@@ -1,12 +1,27 @@
 package login;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-import produccion.MainFrame;
+import conexion.MySQLConnector;
 import menu.MenuPrincipal;
-import java.awt.*;
-import java.awt.event.*;
 
 public class LoginForm extends JFrame implements ActionListener {
     // Componentes de la interfaz
@@ -96,24 +111,42 @@ public class LoginForm extends JFrame implements ActionListener {
                 botonLogin.addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent e) {
-////////////////////////////
-char [] contraseña = campoContraseña.getPassword();
-String claveFinal = new String(contraseña);
-if (campoUsuario.getText().equals("produccion") && claveFinal.equals("1234")) {
-	dispose();
-	JOptionPane.showMessageDialog(null, "Bienvenido al sistema de Produccion"
-			, "Ingresaste", JOptionPane.INFORMATION_MESSAGE);
-	MenuPrincipal a = new MenuPrincipal();
-	a.setVisible(true);
-	} else {
-	JOptionPane.showMessageDialog(null, "Escriba correctamente el usuario o contraseña "
-  			+ "", "Error", JOptionPane.ERROR_MESSAGE);
-	campoUsuario.setText("");
-	campoContraseña.setText("");
-	campoUsuario.requestFocus();
-	}
+     public void actionPerformed(ActionEvent e) {
+        char[] contraseña = campoContraseña.getPassword();
+        String claveFinal = new String(contraseña);
+
+        if (validarCredenciales(campoUsuario.getText(), claveFinal)) {
+            dispose();
+            JOptionPane.showMessageDialog(null, "Bienvenido al sistema de Produccion", "Ingresaste", JOptionPane.INFORMATION_MESSAGE);
+            MenuPrincipal a = new MenuPrincipal();
+            a.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Escriba correctamente el usuario o contraseña", "Error", JOptionPane.ERROR_MESSAGE);
+            campoUsuario.setText("");
+            campoContraseña.setText("");
+            campoUsuario.requestFocus();
+        }
     }
+
+    private boolean validarCredenciales(String usuario, String contraseña) {
+        try (Connection conn = MySQLConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM usuarios WHERE usuario = ? AND contraseña = ?")) {
+            stmt.setString(1, usuario);
+            stmt.setString(2, contraseña);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    return count > 0;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
         LoginForm login = new LoginForm();
         login.setVisible(true);
